@@ -860,6 +860,14 @@ def run_audit(vm_name):
 
             )
 
+            requires_root = bool(
+                _get_field(
+                    command_record,
+                    "requires_root",
+                    default=False
+                )
+            )
+
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             if not audit_command:
@@ -883,6 +891,8 @@ def run_audit(vm_name):
                     audit_command,
 
                     timeout,
+
+                    requires_root=requires_root
 
                 )
 
